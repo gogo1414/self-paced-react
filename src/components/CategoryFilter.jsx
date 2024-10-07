@@ -1,4 +1,4 @@
-import styles from '../css/CategoryFilter.module.css'; 
+import styles from "../css/CategoryFilter.module.css"; 
 
 function CategoryFilter() {
     const category = [ '전체', '한식', '중식', '일식', '양식', '아시안', '기타' ];

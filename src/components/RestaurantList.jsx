@@ -24,7 +24,7 @@ function RestaurantItem({name, description, category, alt}) {
     return (
         <li className={styles['restaurant']}>
           <div className={styles['restaurant__category']}>
-            <img src={`../../templates/category-${category}.png`} alt={alt} clasName={styless["category-icon"]}></img>
+            <img src={`../../templates/category-${category}.png`} alt={alt} className={styles["category-icon"]}></img>
           </div>
           <div className={styles['restaurant__info']}>
             <h3 className={`${styles.restaurant__name} text-subtitle`}>{name}</h3>
