@@ -5,9 +5,15 @@ function RestaurantList() {
 
     return (
         <section className={styles['restaurant-list-container']}>
-            <ul class="restaurant-list">
-                {restaurantList.map(() => (
-                    RestaurantItem(restaurantList)
+            <ul className={styles['restaurant-list']}>
+                {restaurantList.map((restaurant, index) => (
+                    <RestaurantItem 
+                        key={index}
+                        name={restaurant.name}
+                        description={restaurant.description}
+                        category={restaurant.category}
+                        alt={restaurant.alt}
+                    />
                 ))}
             </ul>   
         </section>
@@ -16,13 +22,13 @@ function RestaurantList() {
 
 function RestaurantItem({name, description, category, alt}) {
     return (
-        <li class="restaurant">
-          <div class="restaurant__category">
-            <img src={`../../templates/category-${category}.png`} alt={alt} class="category-icon"></img>
+        <li className={styles['restaurant']}>
+          <div className={styles['restaurant__category']}>
+            <img src={`../../templates/category-${category}.png`} alt={alt} clasName={styless["category-icon"]}></img>
           </div>
-          <div class="restaurant__info">
-            <h3 class="restaurant__name text-subtitle">{name}</h3>
-            <p class="restaurant__description text-body">{description}</p>
+          <div className={styles['restaurant__info']}>
+            <h3 className={`${styles.restaurant__name} text-subtitle`}>{name}</h3>
+            <p className={`${styles.restaurant__description} text-body`}>{description}</p>
           </div>
         </li>
     );
