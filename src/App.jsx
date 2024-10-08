@@ -8,14 +8,11 @@ import { useState } from "react";
 
 function App() { 
   const [ category, setCategory ] = useState("전체");
-  console.log("test = " + category)
   const restaurantList = getRestaurantList();
 
   const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
     (restaurant) => restaurant.category === category
   );
-
-  console.log("test : " + filteredRestaurants);
 
   return (
     <>
