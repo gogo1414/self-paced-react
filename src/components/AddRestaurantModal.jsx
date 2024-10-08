@@ -13,8 +13,8 @@ function AddRestaurantModal() {
                         <label htmlFor="category" className="text-caption">카테고리</label>
                         <select name="category" id="category" required>
                             <option value="">선택해 주세요</option>
-                            {categories.map((category) => (
-                                <option value={category}>{category}</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category}>{category}</option>
                             ))}
                         </select>
                     </div>
