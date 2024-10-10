@@ -1,7 +1,8 @@
+import Categories from "./Category.jsx";
 import styles from "../css/RestaurantModal.module.css";
 
 function AddRestaurantModal() {
-    const categories = ["한식", "중식", "일식", "양식", "아시안", "기타"];
+    const categories = Categories();
 
     return (
         <div className={`${styles.modal} ${styles["modal--open"]}`}>
@@ -13,8 +14,8 @@ function AddRestaurantModal() {
                         <label htmlFor="category" className="text-caption">카테고리</label>
                         <select name="category" id="category" required>
                             <option value="">선택해 주세요</option>
-                            {categories.map((category, index) => (
-                                <option key={index} value={category}>{category}</option>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.name}>{category.name}</option>
                             ))}
                         </select>
                     </div>
@@ -37,6 +38,35 @@ function AddRestaurantModal() {
             </div>
         </div>
     ); 
+}
+
+function getCategories() {
+    return [
+        {
+            "id": "c1",
+            "name": "한식"
+        },
+        {
+            "id": "c2",
+            "name": "중식"
+        },
+        {
+            "id": "c3",
+            "name": "일식"
+        },
+        {
+            "id": "c4",
+            "name": "양식"
+        },
+        {
+            "id": "c5",
+            "name": "아시안"
+        },
+        {
+            "id": "c6",
+            "name": "기타"
+        }
+    ];
 }
 
 export default AddRestaurantModal;

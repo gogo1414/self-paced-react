@@ -1,8 +1,8 @@
-import { useState } from "react";
+import Categories from "./Category.jsx";
 import styles from "../css/CategoryFilter.module.css"; 
 
 function CategoryFilter({ category, onChangeCategory }) {
-    const categoryList = [ "전체", "한식", "중식", "일식", "양식", "아시안", "기타" ];
+    const categoryList = Categories();
 
     return (
         <section className={styles['restaurant-filter-container']}>
@@ -14,8 +14,8 @@ function CategoryFilter({ category, onChangeCategory }) {
                 value={category}
                 onChange={(event) => onChangeCategory(event.target.value)}
             >
-                {categoryList.map((categoryItem, index) => (
-                    <option key = {index} value={categoryItem}>{categoryItem}</option>
+                {categoryList.map((category) => (
+                    <option key = {category.id} value={category.name}>{category.name}</option>
                 ))}
             </select>
         </section>

@@ -4,9 +4,9 @@ function RestaurantList( {restaurants} ) {
     return (
         <section className={styles['restaurant-list-container']}>
             <ul className={styles['restaurant-list']}>
-                {restaurants.map((restaurant, index) => (
+                {restaurants.map((restaurant) => (
                     <RestaurantItem 
-                        key={index}
+                        key={restaurant.id}
                         name={restaurant.name}
                         description={restaurant.description}
                         category={restaurant.category}
