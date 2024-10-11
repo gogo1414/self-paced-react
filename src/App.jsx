@@ -1,15 +1,15 @@
 import "./App.css";
 import Header from "./components/Header.jsx";
 import CategoryFilter from "./components/CategoryFilter.jsx";
-import RestaurantList from "./components/RestaurantList.jsx";
 import RestaurantDetailModal from "./components/RestaurantDetailModal.jsx";
 import AddRestaurantModal from "./components/AddRestaurantModal.jsx";
-import RestaurantList from "./data/Restaurant.js";
+import RestaurantList from "./components/RestaurantList.jsx"
+import Restaurants from "./data/Restaurant.js";
 import { useState } from "react";
 
 function App() { 
   const [ category, setCategory ] = useState("전체");
-  const restaurantList = RestaurantList();
+  const restaurantList = Restaurants();
 
   const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
     (restaurant) => restaurant.category === category

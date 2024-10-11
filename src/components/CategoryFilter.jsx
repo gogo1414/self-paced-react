@@ -1,4 +1,4 @@
-import Categories from "./Category.js";
+import Categories from "../data/Category.js";
 import styles from "../css/CategoryFilter.module.css"; 
 
 function CategoryFilter({ category, onChangeCategory }) {
