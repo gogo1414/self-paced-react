@@ -40,33 +40,4 @@ function AddRestaurantModal() {
     ); 
 }
 
-function getCategories() {
-    return [
-        {
-            "id": "c1",
-            "name": "한식"
-        },
-        {
-            "id": "c2",
-            "name": "중식"
-        },
-        {
-            "id": "c3",
-            "name": "일식"
-        },
-        {
-            "id": "c4",
-            "name": "양식"
-        },
-        {
-            "id": "c5",
-            "name": "아시안"
-        },
-        {
-            "id": "c6",
-            "name": "기타"
-        }
-    ];
-}
-
 export default AddRestaurantModal;
