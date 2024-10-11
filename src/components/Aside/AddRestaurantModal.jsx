@@ -1,5 +1,5 @@
-import Categories from "../data/Category.js";
-import styles from "../css/RestaurantModal.module.css";
+import Categories from "../../data/Category.js";
+import styles from "../../css/RestaurantModal.module.css";
 
 function AddRestaurantModal() {
     const categories = Categories();

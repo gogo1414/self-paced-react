@@ -1,4 +1,4 @@
-import styles from "../css/RestaurantModal.module.css"
+import styles from "../../css/RestaurantModal.module.css"
 
 function RestaurantDetailModal() {
     return (

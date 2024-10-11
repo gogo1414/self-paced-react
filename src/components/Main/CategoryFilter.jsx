@@ -1,5 +1,5 @@
-import Categories from "../data/Category.js";
-import styles from "../css/CategoryFilter.module.css"; 
+import Categories from "../../data/Category.js";
+import styles from "../../css/CategoryFilter.module.css"; 
 
 function CategoryFilter({ category, onChangeCategory }) {
     const categoryList = Categories();

@@ -1,22 +1,4 @@
-import styles from '../css/RestaurantList.module.css';
-
-function RestaurantList( {restaurants} ) {
-    return (
-        <section className={styles['restaurant-list-container']}>
-            <ul className={styles['restaurant-list']}>
-                {restaurants.map((restaurant) => (
-                    <RestaurantItem 
-                        key={restaurant.id}
-                        name={restaurant.name}
-                        description={restaurant.description}
-                        category={restaurant.category}
-                        alt={restaurant.alt}
-                    />
-                ))}
-            </ul>   
-        </section>
-    );
-}
+import styles from '../../css/RestaurantList.module.css';
 
 function RestaurantItem({name, description, category, alt}) {
     return (
@@ -47,4 +29,4 @@ function convertCategoryToImageSrc(category) {
         return "../../templates/category-western.png";
 }
 
-export default RestaurantList;
+export default RestaurantItem;
