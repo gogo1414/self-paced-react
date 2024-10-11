@@ -1,4 +1,4 @@
-import Categories from "./Category.jsx";
+import Categories from "../data/Category.js";
 import styles from "../css/RestaurantModal.module.css";
 
 function AddRestaurantModal() {
