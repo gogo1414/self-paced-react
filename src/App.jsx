@@ -8,16 +8,17 @@ import Restaurants from "./data/Restaurant.js";
 import { useState } from "react";
 
 function App() {
-  const [restaurantList, setRestaurantList] = useState(Restaurants());
+  const [ restaurantList, setRestaurantList ] = useState(Restaurants());
   const [ category, setCategory ] = useState("전체");
+  const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState({
+    detail: false,
+    add: false,
+  });
 
   const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
     (restaurant) => restaurant.category === category
   );
-
-  const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
-  const [ showDetailModal, setShowDetailModal ] = useState(false);
-  const [ showAddModal, setShowAddModal ] = useState(false);
   
   const selectedRestaurant = restaurantList.find(
       (restaurant) => restaurant.name === clickRestaurantItem
@@ -25,15 +26,16 @@ function App() {
 
   const handleOpenDetailModal = (restaurantName) => {
     setClickRestaurantItem(restaurantName);
-    setShowDetailModal(true);
+    setIsModalOpen({...prev, detail: true});
   };
 
   const handleCloseDetailModal = () => {
+    setIsModalOpen({...prev, detail: false});
     setShowDetailModal(false);
   }
 
   const handleOpenAddModal = () => {
-    setShowAddModal(true);
+    setIsModalOpen({...prev, add: true});
   }
 
   const handleCloseAddModal = (event) => {
@@ -46,7 +48,7 @@ function App() {
       category: formJson.category
     };
     setRestaurantList([...restaurantList, newRestaurant]);
-    setShowAddModal(false);
+    setIsModalOpen({...prev, add: false});
   }
 
   return (
@@ -57,8 +59,8 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeDetailModal={handleOpenDetailModal} />
       </main>
       <aside>
-        {showDetailModal && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeDetailModal={handleCloseDetailModal} />}
-        {showAddModal && <AddRestaurantModal onChangeAddModal={handleCloseAddModal} />}
+        {isModalOpen && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeDetailModal={handleCloseDetailModal} />}
+        {isModalOpen && <AddRestaurantModal onChangeAddModal={handleCloseAddModal} />}
       </aside>
     </>
   );
