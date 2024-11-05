@@ -38,15 +38,8 @@ function App() {
   }
 
   const closeAddModal = (event) => {
-    const formData = new FormData(event);
-    const formJson = Object.fromEntries(formData.entries());
-    const newRestaurant = {
-      id: Date.now(),
-      name: formJson.name,
-      description: formJson.description,
-      category: formJson.category
-    };
-    setRestaurantList([...restaurantList, newRestaurant]);
+    if(event !== null)
+      addRestaurant(event);
     setIsModalOpen((prev) => ({ ...prev, add: false }));
   }
 
@@ -63,6 +56,18 @@ function App() {
       </aside>
     </>
   );
+
+  function addRestaurant(event) {
+    const formData = new FormData(event);
+    const formJson = Object.fromEntries(formData.entries());
+    const newRestaurant = {
+      id: Date.now(),
+      name: formJson.name,
+      description: formJson.description,
+      category: formJson.category
+    };
+    setRestaurantList([...restaurantList, newRestaurant]);
+  }
 }
 
 export default App;
