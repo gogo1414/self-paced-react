@@ -39,6 +39,7 @@ function App() {
   }
 
   const handleCloseAddModal = (event) => {
+    event.preventDefault();
     const formData = new FormData(event);
     const formJson = Object.fromEntries(formData.entries());
     const newRestaurant = {
