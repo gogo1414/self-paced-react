@@ -22,7 +22,7 @@ function App() {
       (restaurant) => restaurant.name === clickRestaurantItem
   )
 
-  const handleRestaurantClick = (restaurantName) => {
+  const handleOpenModal = (restaurantName) => {
     setClickRestaurantItem(restaurantName);
     setShowDetailModal(true);
   };
