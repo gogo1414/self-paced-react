@@ -26,20 +26,18 @@ function App() {
 
   const openDetailModal = (restaurantName) => {
     setClickRestaurantItem(restaurantName);
-    setIsModalOpen({...prev, detail: true});
+    setIsModalOpen((prev) => ({ ...prev, detail: true }));
   };
 
   const closeDetailModal = () => {
-    setIsModalOpen({...prev, detail: false});
-    setShowDetailModal(false);
+    setIsModalOpen((prev) => ({ ...prev, detail: false }));
   }
 
   const openAddModal = () => {
-    setIsModalOpen({...prev, add: true});
+    setIsModalOpen((prev) => ({ ...prev, add: true }));
   }
 
   const closeAddModal = (event) => {
-    event.preventDefault();
     const formData = new FormData(event);
     const formJson = Object.fromEntries(formData.entries());
     const newRestaurant = {
@@ -49,7 +47,7 @@ function App() {
       category: formJson.category
     };
     setRestaurantList([...restaurantList, newRestaurant]);
-    setIsModalOpen({...prev, add: false});
+    setIsModalOpen((prev) => ({ ...prev, add: false }));
   }
 
   return (
@@ -60,8 +58,8 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeDetailModal={openDetailModal} />
       </main>
       <aside>
-        {isModalOpen && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeDetailModal={closeDetailModal} />}
-        {isModalOpen && <AddRestaurantModal onChangeAddModal={closeAddModal} />}
+        {isModalOpen.detail && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeDetailModal={closeDetailModal} />}
+        {isModalOpen.add && <AddRestaurantModal onChangeAddModal={closeAddModal} />}
       </aside>
     </>
   );
