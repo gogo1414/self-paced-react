@@ -6,13 +6,6 @@ import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
 import RestaurantList from "./components/Main/RestaurantList.jsx"
 import Restaurants from "./data/Restaurant.js";
 import { useState } from "react";
-import Header from "./components/Header/Header.jsx";
-import CategoryFilter from "./components/Main/CategoryFilter.jsx";
-import RestaurantDetailModal from "./components/Aside/RestaurantDetailModal.jsx";
-import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
-import RestaurantList from "./components/Main/RestaurantList.jsx"
-import Restaurants from "./data/Restaurant.js";
-import { useState } from "react";
 
 function App() {
   const [ category, setCategory ] = useState("전체");
@@ -40,14 +33,14 @@ function App() {
 
   return (
     <>
-      <Header  />
+      <Header />
       <main>
         <CategoryFilter category={category} onChangeCategory={setCategory} />
         <RestaurantList restaurants={filteredRestaurants} onChangeModal={handleOpenModal} />
       </main>
       <aside>
         {showDetailModal && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeModal={handleCloseModal} />}
-        <AddRestaurantModal />
+        {/* <AddRestaurantModal /> */}
       </aside>
     </>
   );
