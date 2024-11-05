@@ -18,12 +18,11 @@ function App() {
   const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
   const [ showDetailModal, setShowDetailModal ] = useState(false);
   
-  const selectedRestaurant = restaurantList.filter(
+  const selectedRestaurant = restaurantList.find(
       (restaurant) => restaurant.name === clickRestaurantItem
   )
 
   const handleRestaurantClick = (restaurantName) => {
-    console.log("클릭했습니다.");
     setClickRestaurantItem(restaurantName);
     setShowDetailModal(true);
   };
