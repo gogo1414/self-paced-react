@@ -1,7 +1,7 @@
 import styles from '../../css/RestaurantList.module.css';
 import RestaurantItem from './RestaurantItem.jsx';
 
-function RestaurantList( {restaurants} ) {
+function RestaurantList( {restaurants, onChangeRestaurant} ) {
     return (
         <section className={styles['restaurant-list-container']}>
             <ul className={styles['restaurant-list']}>
@@ -12,6 +12,7 @@ function RestaurantList( {restaurants} ) {
                         description={restaurant.description}
                         category={restaurant.category}
                         alt={restaurant.alt}
+                        onClick={() => onChangeRestaurant(restaurant.name)}
                     />
                 ))}
             </ul>   
