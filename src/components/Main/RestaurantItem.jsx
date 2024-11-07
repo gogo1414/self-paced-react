@@ -1,8 +1,8 @@
 import styles from '../../css/RestaurantList.module.css';
 
-function RestaurantItem({ name, description, category, alt, onClick }) {
+function RestaurantItem({ name, description, category, alt, onChangeModal }) {
     return (
-        <li className={styles['restaurant']} onClick={onClick}>
+        <li className={styles['restaurant']} onClick={onChangeModal}>
           <div className={styles['restaurant__category']}>
             <img src={convertCategoryToImageSrc(category)} alt={alt} className={styles["category-icon"]}></img>
           </div>
