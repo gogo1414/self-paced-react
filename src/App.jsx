@@ -15,7 +15,7 @@ function App() {
     (restaurant) => restaurant.category === category
   );
 
-  const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
+  const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [ showDetailModal, setShowDetailModal ] = useState(false);
 
   const handleOpenModal = (name, description) => {
@@ -23,7 +23,7 @@ function App() {
       name: name,
       description: description
     };
-    setClickRestaurantItem(restaurant);
+    setClickedRestaurantItem(restaurant);
     setShowDetailModal(true);
   };
 
@@ -39,7 +39,7 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeModal={handleOpenModal} />
       </main>
       <aside>
-        {showDetailModal && <RestaurantDetailModal restaurant={clickRestaurantItem} onChangeModal={handleCloseModal} />}
+        {showDetailModal && <RestaurantDetailModal restaurant={clickedRestaurantItem} onChangeModal={handleCloseModal} />}
         {/* <AddRestaurantModal /> */}
       </aside>
     </>
