@@ -17,13 +17,13 @@ function App() {
 
   const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
   const [ showDetailModal, setShowDetailModal ] = useState(false);
-  
-  const selectedRestaurant = restaurantList.find(
-      (restaurant) => restaurant.name === clickRestaurantItem
-  )
 
-  const handleOpenModal = (restaurantName) => {
-    setClickRestaurantItem(restaurantName);
+  const handleOpenModal = (name, description) => {
+    const restaurant = {
+      name: name,
+      description: description
+    };
+    setClickRestaurantItem(restaurant);
     setShowDetailModal(true);
   };
 
@@ -39,7 +39,7 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeModal={handleOpenModal} />
       </main>
       <aside>
-        {showDetailModal && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeModal={handleCloseModal} />}
+        {showDetailModal && <RestaurantDetailModal restaurant={clickRestaurantItem} onChangeModal={handleCloseModal} />}
         {/* <AddRestaurantModal /> */}
       </aside>
     </>

@@ -12,7 +12,7 @@ function RestaurantList( { restaurants, onChangeModal } ) {
                         description={restaurant.description}
                         category={restaurant.category}
                         alt={restaurant.alt}
-                        onClick={() => onChangeModal(restaurant.name)}
+                        onClick={() => onChangeModal(restaurant.name, restaurant.description)}
                     />
                 ))}
             </ul>   
