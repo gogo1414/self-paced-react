@@ -10,7 +10,7 @@ import { useState } from "react";
 function App() {
   const [ restaurantList, setRestaurantList ] = useState(Restaurants());
   const [ category, setCategory ] = useState("전체");
-  const [ clickRestaurantItem, setClickRestaurantItem ] = useState(null);
+  const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState({
     detail: false,
     add: false,
@@ -25,7 +25,7 @@ function App() {
       name: name,
       description: description
     };
-    setClickRestaurantItem(detailRestaurant);
+    setClickedRestaurantItem(detailRestaurant);
     setIsModalOpen((prev) => ({ ...prev, detail: true }));
   };
 
@@ -51,7 +51,7 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeDetailModal={openDetailModal} />
       </main>
       <aside>
-        {isModalOpen.detail && <RestaurantDetailModal restaurant={clickRestaurantItem} onChangeDetailModal={closeDetailModal} />}
+        {isModalOpen.detail && <RestaurantDetailModal restaurant={clickedRestaurantItem} onChangeDetailModal={closeDetailModal} />}
         {isModalOpen.add && <AddRestaurantModal onChangeAddModal={closeAddModal} />}
       </aside>
     </>
