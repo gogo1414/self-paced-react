@@ -20,39 +20,41 @@ function App() {
     (restaurant) => restaurant.category === category
   );
 
-  const openDetailModal = ( name, description ) => {
-    const detailRestaurant = {
-      name: name,
-      description: description
-    };
-    setClickedRestaurantItem(detailRestaurant);
-    setIsModalOpen((prev) => ({ ...prev, detail: true }));
-  };
+  const toggleModal = (modalType, isOpen, detailData = null, event = null) => {
+    setIsModalOpen((prev) => ({ ...prev, [modalType]: isOpen }));
 
-  const closeDetailModal = () => {
-    setIsModalOpen((prev) => ({ ...prev, detail: false }));
-  }
-
-  const openAddModal = () => {
-    setIsModalOpen((prev) => ({ ...prev, add: true }));
-  }
-
-  const closeAddModal = (event) => {
-    if(event !== null)
+    if (modalType === "detail" && isOpen && detailData) {
+      setClickedRestaurantItem(detailData);
+    } else if (modalType === "add" && !isOpen && event) {
       addRestaurant(event);
-    setIsModalOpen((prev) => ({ ...prev, add: false }));
-  }
+    }
+  };
 
   return (
     <>
-      <Header onChangeAddModal={openAddModal}/>
+      <Header 
+        onChangeAddModal={() => toggleModal("add", true)}
+      />
       <main>
         <CategoryFilter category={category} onChangeCategory={setCategory} />
-        <RestaurantList restaurants={filteredRestaurants} onChangeDetailModal={openDetailModal} />
+        <RestaurantList 
+          restaurants={filteredRestaurants} 
+          onChangeDetailModal={(name, description) => toggleModal("detail", true, { name, description })
+          }
+        />
       </main>
       <aside>
-        {isModalOpen.detail && <RestaurantDetailModal restaurant={clickedRestaurantItem} onChangeDetailModal={closeDetailModal} />}
-        {isModalOpen.add && <AddRestaurantModal onChangeAddModal={closeAddModal} />}
+        {isModalOpen.detail && 
+          <RestaurantDetailModal 
+            restaurant={clickedRestaurantItem} 
+            onChangeDetailModal={() => toggleModal("detail", false)}
+          />
+        }
+        {isModalOpen.add && 
+          <AddRestaurantModal 
+            onChangeAddModal={(event) => toggleModal("add", false, null, event)}
+          />
+        }
       </aside>
     </>
   );
