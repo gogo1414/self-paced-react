@@ -19,13 +19,13 @@ function App() {
   const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
     (restaurant) => restaurant.category === category
   );
-  
-  const selectedRestaurant = restaurantList.find(
-      (restaurant) => restaurant.name === clickRestaurantItem
-  )
 
-  const openDetailModal = (restaurantName) => {
-    setClickRestaurantItem(restaurantName);
+  const openDetailModal = ( name, description ) => {
+    const detailRestaurant = {
+      name: name,
+      description: description
+    };
+    setClickRestaurantItem(detailRestaurant);
     setIsModalOpen((prev) => ({ ...prev, detail: true }));
   };
 
@@ -51,7 +51,7 @@ function App() {
         <RestaurantList restaurants={filteredRestaurants} onChangeDetailModal={openDetailModal} />
       </main>
       <aside>
-        {isModalOpen.detail && <RestaurantDetailModal restaurant={selectedRestaurant} onChangeDetailModal={closeDetailModal} />}
+        {isModalOpen.detail && <RestaurantDetailModal restaurant={clickRestaurantItem} onChangeDetailModal={closeDetailModal} />}
         {isModalOpen.add && <AddRestaurantModal onChangeAddModal={closeAddModal} />}
       </aside>
     </>
