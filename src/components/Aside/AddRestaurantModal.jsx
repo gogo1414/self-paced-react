@@ -2,14 +2,17 @@ import Categories from "../../data/Category.js";
 import styles from "../../css/RestaurantModal.module.css";
 import Modal from "./Modal.jsx"
 
-function AddRestaurantModal({ onChangeAddModal }) {
+function AddRestaurantModal({ onFormSubmit, onChangeAddModal }) {
     const categories = Categories().filter(
         (category) => category.name !== "전체"
     );
 
     return (
-        <Modal title="새로운 음식점" onClose={() => onChangeAddModal(null)}>
-            <form method="post" onSubmit={(event) => onChangeAddModal(event.target)}>
+        <Modal 
+            title="새로운 음식점" 
+            onClose={onChangeAddModal}
+        >
+            <form method="post" onSubmit={(event) => onFormSubmit(event.target)}>
                 <div className={`${styles["form-item"]} ${styles["form-item--required"]}`}>
                     <label htmlFor="category" className="text-caption">카테고리</label>
                     <select name="category" id="category" required>

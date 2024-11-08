@@ -52,7 +52,8 @@ function App() {
         }
         {isModalOpen.add && 
           <AddRestaurantModal 
-            onChangeAddModal={(event) => toggleModal("add", false, null, event)}
+            onFormSubmit={(event) => toggleModal("add", false, null, event)}
+            onChangeAddModal={() => toggleModal("add", false)}
           />
         }
       </aside>
