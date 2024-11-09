@@ -4,17 +4,31 @@ import CategoryFilter from "./components/Main/CategoryFilter.jsx";
 import RestaurantDetailModal from "./components/Aside/RestaurantDetailModal.jsx";
 import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
 import RestaurantList from "./components/Main/RestaurantList.jsx"
-import Restaurants from "./data/Restaurant.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [ restaurantList, setRestaurantList ] = useState(Restaurants());
+  const [ restaurantList, setRestaurantList ] = useState([]);
   const [ category, setCategory ] = useState("전체");
   const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState({
     detail: false,
     add: false,
   });
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/restaurants");
+        const data = await response.json();
+        setRestaurantList(data);
+        console.log(JSON.stringify(data, null, 2));
+      } catch (error) {
+        console.error("Failed to fetch restaurants:", error);
+      }
+    };
+    
+    fetchRestaurants();
+  }, []);
 
   const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
     (restaurant) => restaurant.category === category
