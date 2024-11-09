@@ -2,7 +2,7 @@ import Categories from "../../data/Category.js";
 import styles from "../../css/CategoryFilter.module.css"; 
 
 function CategoryFilter({ category, onChangeCategory }) {
-    const categoryList = Categories();
+    const categories = Categories();
 
     return (
         <section className={styles['restaurant-filter-container']}>
@@ -14,7 +14,7 @@ function CategoryFilter({ category, onChangeCategory }) {
                 value={category}
                 onChange={(event) => onChangeCategory(event.target.value)}
             >
-                {categoryList.map((category) => (
+                {categories.map((category) => (
                     <option key = {category.id} value={category.name}>{category.name}</option>
                 ))}
             </select>
