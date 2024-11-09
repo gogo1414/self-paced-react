@@ -4,18 +4,17 @@ import CategoryFilter from "./components/Main/CategoryFilter.jsx";
 import RestaurantDetailModal from "./components/Aside/RestaurantDetailModal.jsx";
 import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
 import RestaurantList from "./components/Main/RestaurantList.jsx"
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRestaurants } from "./hooks/useRestaurants.js";
 
 function App() {
-  const [ restaurants, setRestaurants ] = useState([]);
+  const { restaurants, addRestaurant } = useRestaurants();
   const [ category, setCategory ] = useState("전체");
   const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState({
     detail: false,
     add: false,
   });
-
-  getRestaurants();
 
   const filteredRestaurants = category === "전체" ? restaurants : restaurants.filter(
     (restaurant) => restaurant.category === category
@@ -27,7 +26,12 @@ function App() {
     if (modalType === "detail" && isOpen && detailData) {
       setClickedRestaurantItem(detailData);
     } else if (modalType === "add" && !isOpen && event) {
-      addRestaurant(event);
+      addRestaurant({
+        id: Date.now(),
+        name: event.name,
+        description: event.description,
+        category: event.category
+      });
     }
   };
 
@@ -60,35 +64,6 @@ function App() {
       </aside>
     </>
   );
-
-  function addRestaurant(event) {
-    const formData = new FormData(event);
-    const formJson = Object.fromEntries(formData.entries());
-    const newRestaurant = {
-      id: Date.now(),
-      name: formJson.name,
-      description: formJson.description,
-      category: formJson.category
-    };
-    setRestaurants([...restaurants, newRestaurant]);
-  }
-  
-  function getRestaurants() {
-    useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/restaurants");
-        const data = await response.json();
-        setRestaurants(data);
-        console.log(JSON.stringify(data, null, 2));
-      } catch (error) {
-        console.error("Failed to fetch restaurants:", error);
-      }
-    };
-    
-    fetchRestaurants();
-  }, []);
-  }
 }
 
 export default App;
