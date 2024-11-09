@@ -7,7 +7,7 @@ import RestaurantList from "./components/Main/RestaurantList.jsx"
 import { useState, useEffect } from "react";
 
 function App() {
-  const [ restaurantList, setRestaurantList ] = useState([]);
+  const [ restaurants, setRestaurants ] = useState([]);
   const [ category, setCategory ] = useState("전체");
   const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState({
@@ -15,22 +15,9 @@ function App() {
     add: false,
   });
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/restaurants");
-        const data = await response.json();
-        setRestaurantList(data);
-        console.log(JSON.stringify(data, null, 2));
-      } catch (error) {
-        console.error("Failed to fetch restaurants:", error);
-      }
-    };
-    
-    fetchRestaurants();
-  }, []);
+  getRestaurants();
 
-  const filteredRestaurants = category === "전체" ? restaurantList : restaurantList.filter(
+  const filteredRestaurants = category === "전체" ? restaurants : restaurants.filter(
     (restaurant) => restaurant.category === category
   );
 
@@ -83,7 +70,24 @@ function App() {
       description: formJson.description,
       category: formJson.category
     };
-    setRestaurantList([...restaurantList, newRestaurant]);
+    setRestaurants([...restaurants, newRestaurant]);
+  }
+  
+  function getRestaurants() {
+    useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/restaurants");
+        const data = await response.json();
+        setRestaurants(data);
+        console.log(JSON.stringify(data, null, 2));
+      } catch (error) {
+        console.error("Failed to fetch restaurants:", error);
+      }
+    };
+    
+    fetchRestaurants();
+  }, []);
   }
 }
 
