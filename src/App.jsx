@@ -20,8 +20,8 @@ function App() {
 
   const handleOpenModal = (name, description) => {
     const restaurant = {
-      name: name,
-      description: description
+      name,
+      description
     };
     setClickedRestaurantItem(restaurant);
     setShowDetailModal(true);
@@ -36,10 +36,10 @@ function App() {
       <Header />
       <main>
         <CategoryFilter category={category} onChangeCategory={setCategory} />
-        <RestaurantList restaurants={filteredRestaurants} onChangeModal={handleOpenModal} />
+        <RestaurantList restaurants={filteredRestaurants} onClickRestaurant={handleOpenModal} />
       </main>
       <aside>
-        {showDetailModal && <RestaurantDetailModal restaurant={clickedRestaurantItem} onChangeModal={handleCloseModal} />}
+        {showDetailModal && <RestaurantDetailModal restaurant={clickedRestaurantItem} onClickClose={handleCloseModal} />}
         {/* <AddRestaurantModal /> */}
       </aside>
     </>
