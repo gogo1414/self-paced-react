@@ -4,11 +4,11 @@ import CategoryFilter from "./components/Main/CategoryFilter.jsx";
 import RestaurantDetailModal from "./components/Aside/RestaurantDetailModal.jsx";
 import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
 import RestaurantList from "./components/Main/RestaurantList.jsx"
-import Restaurants from "./data/Restaurant.js";
+import getRestaurants from "./data/Restaurant.js";
 import { useState } from "react";
 
 function App() {
-  const [ restaurantList, setRestaurantList ] = useState(Restaurants());
+  const [ restaurantList, setRestaurantList ] = useState(getRestaurants());
   const [ category, setCategory ] = useState("전체");
   const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState({
