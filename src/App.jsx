@@ -20,13 +20,13 @@ function App() {
     (restaurant) => restaurant.category === category
   );
 
-  const toggleModal = (modalType, isOpen, restaurant = null) => {
+  const toggleModal = (modalType, isOpen, restaurantData = null) => {
     setIsModalOpen((prev) => ({ ...prev, [modalType]: isOpen }));
 
-    if (modalType === "detail" && isOpen && restaurant) {
-      setClickedRestaurantItem(restaurant);
-    } else if (modalType === "add" && !isOpen && restaurant) {
-      addRestaurant(restaurant);
+    if (modalType === "detail" && isOpen && restaurantData) {
+      setClickedRestaurantItem(restaurantData);
+    } else if (modalType === "add" && !isOpen && restaurantData) {
+      addRestaurant(restaurantData);
     }
   };
 
