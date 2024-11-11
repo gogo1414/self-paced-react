@@ -20,13 +20,13 @@ function App() {
     (restaurant) => restaurant.category === category
   );
 
-  const toggleModal = (modalType, isOpen, detailData = null, event = null) => {
+  const toggleModal = (modalType, isOpen, restaurant = null) => {
     setIsModalOpen((prev) => ({ ...prev, [modalType]: isOpen }));
 
-    if (modalType === "detail" && isOpen && detailData) {
-      setClickedRestaurantItem(detailData);
-    } else if (modalType === "add" && !isOpen && event) {
-      addRestaurant(event);
+    if (modalType === "detail" && isOpen && restaurant) {
+      setClickedRestaurantItem(restaurant);
+    } else if (modalType === "add" && !isOpen && restaurant) {
+      addRestaurant(restaurant);
     }
   };
 
@@ -52,7 +52,7 @@ function App() {
         }
         {isModalOpen.add && 
           <AddRestaurantModal 
-            onFormSubmit={(event) => toggleModal("add", false, null, event)}
+            onFormSubmit={(event) => toggleModal("add", false, event)}
             onChangeAddModal={() => toggleModal("add", false)}
           />
         }
@@ -60,14 +60,12 @@ function App() {
     </>
   );
 
-  function addRestaurant(event) {
-    const formData = new FormData(event);
-    const formJson = Object.fromEntries(formData.entries());
+  function addRestaurant(restaurant) {
     const newRestaurant = {
       id: Date.now(),
-      name: formJson.name,
-      description: formJson.description,
-      category: formJson.category
+      name: restaurant.name,
+      description: restaurant.description,
+      category: restaurant.category
     };
     setRestaurantList([...restaurantList, newRestaurant]);
   }

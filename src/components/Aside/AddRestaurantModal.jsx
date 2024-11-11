@@ -7,12 +7,18 @@ function AddRestaurantModal({ onFormSubmit, onChangeAddModal }) {
         (category) => category.name !== "전체"
     );
 
+    const handleSubmit = (event) => {
+        const formData = new FormData(event.target);
+        const formJson = Object.fromEntries(formData.entries());
+        onFormSubmit(formJson);
+    }
+
     return (
         <Modal 
             title="새로운 음식점" 
             onClose={onChangeAddModal}
         >
-            <form method="post" onSubmit={(event) => onFormSubmit(event.target)}>
+            <form method="post" onSubmit={handleSubmit}>
                 <div className={`${styles["form-item"]} ${styles["form-item--required"]}`}>
                     <label htmlFor="category" className="text-caption">카테고리</label>
                     <select name="category" id="category" required>
