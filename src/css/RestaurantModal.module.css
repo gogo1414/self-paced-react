@@ -4,7 +4,7 @@
 }
   
 .modal--open {
-    display: none;
+    display: block;
 }
   
 .modal-backdrop {

@@ -7,7 +7,7 @@ import RestaurantList from "./components/Main/RestaurantList.jsx"
 import Restaurants from "./data/Restaurant.js";
 import { useState } from "react";
 
-function App() { 
+function App() {
   const [ category, setCategory ] = useState("전체");
   const restaurantList = Restaurants();
 
@@ -15,16 +15,32 @@ function App() {
     (restaurant) => restaurant.category === category
   );
 
+  const [ clickedRestaurantItem, setClickedRestaurantItem ] = useState(null);
+  const [ showDetailModal, setShowDetailModal ] = useState(false);
+
+  const handleOpenModal = (name, description) => {
+    const restaurant = {
+      name,
+      description
+    };
+    setClickedRestaurantItem(restaurant);
+    setShowDetailModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowDetailModal(false);
+  }
+
   return (
     <>
       <Header />
       <main>
         <CategoryFilter category={category} onChangeCategory={setCategory} />
-        <RestaurantList restaurants={filteredRestaurants} />
+        <RestaurantList restaurants={filteredRestaurants} onClickRestaurant={handleOpenModal} />
       </main>
       <aside>
-        <RestaurantDetailModal />
-        <AddRestaurantModal />
+        {showDetailModal && <RestaurantDetailModal restaurant={clickedRestaurantItem} onClickClose={handleCloseModal} />}
+        {/* <AddRestaurantModal /> */}
       </aside>
     </>
   );
