@@ -6,6 +6,7 @@ import AddRestaurantModal from "./components/Aside/AddRestaurantModal.jsx";
 import RestaurantList from "./components/Main/RestaurantList.jsx"
 import { useState } from "react";
 import { useRestaurants } from "./hooks/useRestaurants.js";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const { restaurants, addRestaurant } = useRestaurants();
@@ -27,7 +28,7 @@ function App() {
       setClickedRestaurantItem(detailData);
     } else if (modalType === "add" && !isOpen && event) {
       addRestaurant({
-        id: Date.now(),
+        id: uuidv4(),
         name: event.name,
         description: event.description,
         category: event.category

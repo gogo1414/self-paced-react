@@ -25,7 +25,7 @@ export const useRestaurants = () => {
                 body: JSON.stringify(newRestaurant),
             });
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 fetchRestaurants();
             }
             else {
