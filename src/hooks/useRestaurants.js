@@ -9,7 +9,7 @@ export const useRestaurants = () => {
             const data = await response.json();
             setRestaurants(data);
         } catch (error) {
-            console.error("Failed to fetch restaurants:", error);
+            alert("레스토랑 데이터를 가져오는데 문제가 발생했습니다.\n" + error);
         }
     };
 
@@ -25,11 +25,14 @@ export const useRestaurants = () => {
                 body: JSON.stringify(newRestaurant),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 fetchRestaurants();
             }
+            else {
+                alert("레스토랑 데이터를 저장하는데 문제가 발생했습니다.\n" + response.status);
+            }
         } catch (error) {
-            console.error("Failed to fetch restaurants:", error);
+            alert("레스토랑 데이터를 저장하는데 문제가 발생했습니다.\n" + error);
         }
     };
 
