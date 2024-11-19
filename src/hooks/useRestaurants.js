@@ -4,13 +4,13 @@ export const useRestaurants = () => {
     const [ restaurants, setRestaurants ] = useState([]);
       
     const fetchRestaurants = async () => {
-    try {
-        const response = await fetch("http://localhost:3000/restaurants");
-        const data = await response.json();
-        setRestaurants(data);
-    } catch (error) {
-        console.error("Failed to fetch restaurants:", error);
-    }
+        try {
+            const response = await fetch("http://localhost:3000/restaurants");
+            const data = await response.json();
+            setRestaurants(data);
+        } catch (error) {
+            console.error("Failed to fetch restaurants:", error);
+        }
     };
 
     useEffect(() => {
@@ -19,17 +19,17 @@ export const useRestaurants = () => {
 
     const addRestaurant = async (newRestaurant) => {
         try {
-        const response = await fetch("http://localhost:3000/restaurants", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newRestaurant),
-        });
-        
-        if (response.ok) { 
-            fetchRestaurants(); 
-        }
+            const response = await fetch("http://localhost:3000/restaurants", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newRestaurant),
+            });
+
+            if (response.ok) {
+                fetchRestaurants();
+            }
         } catch (error) {
-        console.error("Failed to fetch restaurants:", error);
+            console.error("Failed to fetch restaurants:", error);
         }
     };
 
